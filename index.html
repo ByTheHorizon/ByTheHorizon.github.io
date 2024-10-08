@@ -80,8 +80,8 @@
                                     </svg> Github
                                 </a>
 
-                                <a href="https://www.tiktok.com/@bythehorizone?_t=8qJL3257ngA&_r=1/" target="_blank" class="fs-6 me-2 text-muted"
-                                    style="text-decoration: none; color:black">
+                                <a href="https://www.tiktok.com/@bythehorizone?_t=8qJL3257ngA&_r=1/" target="_blank"
+                                    class="fs-6 me-2 text-muted" style="text-decoration: none; color:black">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="15" viewBox="0 0 448 512">
                                         <path
                                             d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
@@ -89,7 +89,7 @@
                                 </a>
 
                             </div>
-                            <a href="#airdrop" class="btn btn-sm btn-dark px-3 mt-4 mb-3 rounded">List Airdrop</a>
+                            <a href="#airdrop" class="btn btn-sm btn-dark px-3 mt-4 mb-3 rounded">List Airdrop Potensial</a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -111,17 +111,26 @@
     <section class="airdrop bg-dark text-light pb-1" id="airdrop">
         <div class="container-lg py-3 container-airdrop">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <h2 class="fw-bold mb-5" style="margin-top: 60px">List Airdrop</h2>
+                <div style="margin-top: 30px;margin-bottom: 30px;"
+                    class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="col-lg-3 col-3"></div>
+
+                    <div class="col-lg-3 col-6 d-flex justify-content-start align-items-center">
+                        <h2 class="fw-bold mb-0">List Airdrop</h2>
+                    </div>
+                    <div class="col-3 d-flex justify-content-end align-items-center">
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="archive">Archive</label>
+                            <input class="form-check-input" onchange="archive()" type="checkbox" role="switch"
+                                id="archive">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="row" id="project-container">
-
+                <!-- Isi project-container -->
             </div>
-
         </div>
     </section>
     <!--------------------- airdrop section endd  ----------------------->
@@ -155,53 +164,55 @@
         });
     </script>
     <script>
-        fetch('asset/json/data.json')
-            .then(response => response.json())
-            .then(data => {
-                data.sort((a, b) => b.PotentialListing - a.PotentialListing);
-                const projectContainer = document.getElementById('project-container');
+        function fetchProjects(status) {
+            fetch('asset/json/data.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.sort((a, b) => b.PotentialListing - a.PotentialListing);
+                    const projectContainer = document.getElementById('project-container');
+                    projectContainer.innerHTML = ''; // Kosongkan sebelumnya sebelum mengisi ulang
 
-                data.forEach(project => {
+                    data.forEach(project => {
+                        if (project.StatusListing == status) {
+                            const card = document.createElement('div');
+                            card.classList.add('project-card', 'col-lg-4', 'col-md-6', 'mb-4');
+                            var potensiallisting = project.PotentialListing;
+                            var spanpotensial = '';
+                            if (potensiallisting >= "80") {
+                                spanpotensial = `<span class="bg-success badge">${potensiallisting}%</span>`
+                            } else if (potensiallisting >= "40") {
+                                spanpotensial = `<span class="bg-warning badge">${potensiallisting}%</span>`
+                            } else {
+                                spanpotensial = `<span class="bg-danger badge">${potensiallisting}%</span>`
+                            }
 
-                    const card = document.createElement('div');
-                    card.classList.add('project-card', 'col-lg-4', 'col-md-6', 'mb-4');
-                    var potensiallisting = project.PotentialListing;
-                    var spanpotensial = '';
-                    if (potensiallisting >= "80") {
-                        spanpotensial = `<span class="bg-success badge">${potensiallisting}%</span>`
-                    } else if (potensiallisting >= "40") {
-                        spanpotensial = `<span class="bg-warning badge">${potensiallisting}%</span>`
-                    } else {
-                        spanpotensial = `<span class="bg-danger badge">${potensiallisting}%</span>`
-                    }
-
-                    var premarket = project.PreMarket;
-                    var spanpremarket = '';
-                    if (premarket == "1") {
-                        spanpremarket = `<span class="bg-danger badge">PREMARKET</span>`
-                    }
-                    var vpn = project.VPN;
-                    var spanvpn = '';
-                    if (vpn == "1") {
-                        spanvpn = `<span class="bg-warning badge">VPN</span>&nbsp;`
-                    }
-                    var statuslist = project.StatusListing;
-                    var spanstatuslist = '';
-                    if (statuslist == '0') {
-                        var spanstatuslist = `<span class="bg-success badge">Ready</span>&nbsp;`;
-                    } else {
-                        var spanstatuslist = `<span class="bg-primary badge">Listing End</span>&nbsp;`;
-                        spanpotensial = `<span class="bg-success badge">100%</span>`
-                    }
-                    var BackupBy = project.BackupBy;
-                    var spanBackupBy = '';
-                    if (BackupBy != "") {
-                        var spanBackupBy = `<strong> Backup By : </strong> ${BackupBy}`;
-                    }
-                    card.innerHTML = `
+                            var premarket = project.PreMarket;
+                            var spanpremarket = '';
+                            if (premarket == "1") {
+                                spanpremarket = `<span class="bg-danger badge">PREMARKET</span>`
+                            }
+                            var vpn = project.VPN;
+                            var spanvpn = '';
+                            if (vpn == "1") {
+                                spanvpn = `<span class="bg-warning badge">VPN</span>&nbsp;`
+                            }
+                            var statuslist = project.StatusListing;
+                            var spanstatuslist = '';
+                            if (statuslist == '0') {
+                                var spanstatuslist = `<span class="bg-success badge">Ready</span>&nbsp;`;
+                            } else {
+                                var spanstatuslist = `<span class="bg-primary badge">Listing End</span>&nbsp;`;
+                                spanpotensial = `<span class="bg-success badge">100%</span>`
+                            }
+                            var BackupBy = project.BackupBy;
+                            var spanBackupBy = '';
+                            if (BackupBy != "") {
+                                var spanBackupBy = `<strong> Backup By : </strong> ${BackupBy}`;
+                            }
+                            card.innerHTML = `
                     <a href="${project.Link}" target="_blank">
                         <div class="card h-100 border-0">
-                            <img class="card-img-top" src="asset/img/airdrop/${project.image}" alt="${project.image}">
+                            <img class="card-img-top" style="max-height: 850px;width: 100%;object-fit: cover;overflow: hidden;" src="asset/img/airdrop/${project.image}" alt="${project.image}">
                             <div class="card-body bg-dark text-light">
                                 <h5 class="card-title">${project.Name}</h5>
                                 <p style="font-size:14px" class="card-text">
@@ -220,10 +231,24 @@
                     </a>
                 `;
 
-                    projectContainer.appendChild(card);
-                });
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
+                            projectContainer.appendChild(card);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+
+        }
+
+        function archive() {
+            var button = document.getElementById("archive");
+            if (button.checked == true) {
+                fetchProjects(1);
+            } else {
+                fetchProjects(0);
+            }
+            console.log(button);
+        }
+        fetchProjects(0);
     </script>
 </body>
 

@@ -2,7 +2,7 @@
     {
         "Name": "SEED",
         "ToDoList": "Quest, Mining, Boost Upgrade Mining, Login Streak",
-        "Listing": "November",
+        "Listing": "November 2024",
         "PotentialListing": "50",
         "PreMarket": "0",
         "VPN": "0",
@@ -16,7 +16,7 @@
     {
         "Name": "Tomarket",
         "ToDoList": "Quest, Mining, Login Streak, Play game",
-        "Listing": "Oktober",
+        "Listing": "Oktober 2024",
         "PotentialListing": "55",
         "PreMarket": "0",
         "VPN": "0",
@@ -30,7 +30,7 @@
     {
         "Name": "Blum",
         "ToDoList": "Quest, Mining, Login Streak, Play game",
-        "Listing": "Oktober",
+        "Listing": "Oktober 2024",
         "PotentialListing": "60",
         "PreMarket": "0",
         "VPN": "0",
@@ -42,23 +42,37 @@
         "image": "blum.jpg"
     },
     {
+        "Name": "Dogs",
+        "ToDoList": "Quest, Mining, Login Streak",
+        "Listing": "26 Agustus 2024",
+        "PotentialListing": "99",
+        "PreMarket": "1",
+        "VPN": "0",
+        "Link": "https://coinmarketcap.com/id/currencies/dogs/",
+        "Tutorial": "Ambil daily streak, Selesaikan misi",
+        "Source": "Telegram",
+        "BackupBy": "",
+        "StatusListing": "1",
+        "image": "dogs.jpg"
+    },
+    {
         "Name": "CATS",
         "ToDoList": "Quest",
-        "Listing": "Oktober",
+        "Listing": "08 Oktober 2024",
         "PotentialListing": "85",
         "PreMarket": "1",
         "VPN": "0",
-        "Link": "https://t.me/catsgang_bot/join?startapp=kfL2QnmhCDi63Z1nw2c9P",
+        "Link": "https://coinmarketcap.com/id/currencies/cats/",
         "Tutorial": "Selesaikan misi yang telah disediakan.",
         "Source": "Telegram",
         "BackupBy": "",
-        "StatusListing": "0",
+        "StatusListing": "1",
         "image": "cats.jpg"
     },
     {
         "Name": "MAJOR",
         "ToDoList": "Quest, Login Streak, Play 3 game daily (Holding,Roulette,Swipe)",
-        "Listing": "Oktober",
+        "Listing": "Oktober 2024",
         "PotentialListing": "85",
         "PreMarket": "1",
         "VPN": "0",
@@ -142,7 +156,7 @@
     {
         "Name": "MemeFi",
         "ToDoList": "Quest,Tap Tap, Mining, Transaction",
-        "Listing": "30 Oktober",
+        "Listing": "30 Oktober 2024",
         "PotentialListing": "95",
         "PreMarket": "1",
         "VPN": "0",
